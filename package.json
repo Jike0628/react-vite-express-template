@@ -2,7 +2,7 @@
   "name": "react-vite-express-template",
   "version": "1.0.0",
   "scripts": {
-    "dev": "cross-env NODE_ENV=develpment vite",
+    "dev": "cross-env PORT=8080 NODE_ENV=develpment vite",
     "build": "cross-env NODE_ENV=production vite build",
     "serve": "cross-env NODE_ENV=production node server/app.js"
   },

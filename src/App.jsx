@@ -1,31 +1,21 @@
-import React, {useState, useEffect} from 'react';
-import './App.css';
-import logo from './Node-JS-01.svg';
+import React, {useEffect, useState} from 'react';
 
-function App() {
-    const [message, setMessage] = useState('Nothing yet.');
+function App(props) {
+
+    const [api, setApi] = useState("React");
 
     useEffect(() => {
-        const getMessage = async () => {
-            try {
-                const response = await fetch('/api');
-                const data = await response.json();
-                setMessage(data.message);
-            } catch (error) {
-                console.log(error);
-                setMessage('Error!');
-            }
-        }
+        const getApi = async () => {
+            const res = await fetch('/api');
+            const data = await res.json();
 
-        getMessage();
-    }, [])
+            setApi(data.message);
+        }
+        getApi();
+    })
 
     return (
-        <main>
-            <p>React⚛️ + Vite⚡ + <img className="logo" src={logo} alt="logo"/><span className="express">express</span>
-            </p>
-            <p>The API sez&hellip; {message}</p>
-        </main>
+        <h1>Hello {api}</h1>
     );
 }
 

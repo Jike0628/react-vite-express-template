@@ -1,19 +1,17 @@
 const express = require('express');
-const path = require('path');
-
 const app = express();
 
-app.get('/api', (req, res) => {
-    res.json({message: 'It works! :)'});
-});
-
 if (process.env.NODE_ENV === 'production') {
-    console.log(`__dirname = ${__dirname}`);
-    app.use(express.static(path.join(__dirname, '..', 'dist')));
-    app.use(express.static(path.join(__dirname, '..', 'public')));
+    app.use(express.static('./dist'));
+    app.use(express.static('./public'));
 
-    app.listen(5000, () => console.log('listening on port 5000'));
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 }
 
-
+app.get("/api", (req, res) => {
+    return res.json({
+        message: "Express"
+    })
+})
 module.exports = app;
